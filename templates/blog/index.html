@@ -1,20 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
-  {% if user.is_authenticated %}
-    <li>
-       User: {{ user.username }}
-    </li>
-    <li>
-      <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-link p-0">Logout</button>
-      </form>
-    </li>
-  {% else %}
-    <li>
-      <a href="{% url "login" %}">Login</a>
-    </li>
-  {% endif %}
+  <ul>
+    {% if user.is_authenticated %}
+      <li>
+        User: {{ user.username }}
+      </li>
+      <li>
+        <form method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-link p-0">Logout</button>
+        </form>
+      </li>
+    {% else %}
+      <li>
+        <a href="{% url "login" %}">Login</a>
+      </li>
+    {% endif %}
+  </ul>
   <h1>Welcome to the club, buddy!</h1>
   <h2>You have the honor of checking out the latest posts:</h2>
   {% if post_list %}
